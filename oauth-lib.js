@@ -11,6 +11,7 @@ function loadConfig() {
     posterAccessToken: process.env.POSTER_ACCESS_TOKEN,
     posterAccessSecret: process.env.POSTER_ACCESS_SECRET,
     targetUsername: process.env.TARGET_USERNAME,
+    targetUserId: process.env.TARGET_USER_ID,
   };
 }
 
