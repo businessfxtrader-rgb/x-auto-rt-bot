@@ -2,7 +2,7 @@ name: Auto RT Bot
 
 on:
   schedule:
-    - cron: '8 0,8,16 * * *'
+    - cron: '0 0,8,16 * * *'
   workflow_dispatch:
 
 permissions:
