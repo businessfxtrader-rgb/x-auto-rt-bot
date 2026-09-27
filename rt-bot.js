@@ -33,11 +33,13 @@ async function getUserId(username) {
 async function getLatestTweets(userId) {
   const res = await apiGet(
     `${API_BASE}/users/${userId}/tweets`,
-    { max_results: '5', exclude: 'replies', 'tweet.fields': 'created_at' },
+    { max_results: '10', exclude: 'replies', 'tweet.fields': 'created_at,in_reply_to_user_id' },
     config.posterAccessToken,
     config.posterAccessSecret
   );
-  return res.data || [];
+  const tweets = res.data || [];
+  // Xのexclude=repliesはセルフリプライ(スレッドの追加投稿)を除外しないため、ここで明示的に除外する
+  return tweets.filter((t) => !t.in_reply_to_user_id);
 }
 
 async function retweet(myUserId, tweetId) {
